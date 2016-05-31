@@ -1,0 +1,15 @@
+{
+  "name": "mobsterlaw",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "jquery-validation": "^1.15.0",
+    "meteor-node-stubs": "~0.2.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.4.1"
+  }
+}
