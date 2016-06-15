@@ -12,6 +12,15 @@ export const Navigation = React.createClass({
 					<a href="/dashboard">Dashboard</a>
 				</li>
 				<li>
+					<a href="/round/index">round</a>
+					<ul>
+						<li>
+							<a href="/round/create">
+								create</a>
+						</li>
+					</ul>
+				</li>
+				<li>
 					<a href="/logout">Logout</a>
 				</li>
 				</span>

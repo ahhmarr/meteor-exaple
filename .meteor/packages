@@ -22,3 +22,7 @@ accounts-password
 accounts-base
 mrt:bootstrap-3
 themeteorchef:bert
+aldeed:collection2
+aldeed:simple-schema
+dburles:collection-helpers
+mdg:validated-method

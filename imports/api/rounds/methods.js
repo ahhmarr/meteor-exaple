@@ -3,6 +3,15 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import {Meteor} from 'meteor/meteor';
 
+export const deleteRounds=new ValidatedMethod({
+	name : 'rounds.delete',
+	validate : new SimpleSchema({
+		id : {type:String}
+	}).validator(),
+	run(round){
+		Rounds.remove(round.id);
+	}
+});
 export const insertRounds=new ValidatedMethod({
 	name : 'rounds.store',
 	validate : new SimpleSchema({

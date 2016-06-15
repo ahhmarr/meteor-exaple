@@ -7,6 +7,9 @@ import Index from './pages/index.js';
 import Login from './pages/authorization/login.js';
 import Signup from './pages/authorization/signup.js';
 import Dashboard from './pages/user/dashboard.js';
+import Round from './pages/round/round.js';
+import RoundIndex from './pages/round/index.js';
+import RoundCreate from './pages/round/create.js';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 const checkAuth=function(nextState,replace)
@@ -43,6 +46,10 @@ Meteor.startup(function()
 	        	<Route path="/logout" name="auth.logout" onEnter={logout} />
 	        	<Route path="/signup" name="auth.signup" onEnter={skipIfLoggedIn} component={Signup} />
 	        	<Route path="/dashboard" onEnter={checkAuth} name="dashboard" component={Dashboard} />
+	        	<Route path="round" onEnter={checkAuth} name="round" component={Round} >
+	        		<Route path="index" name="round.index" component={RoundIndex}/>
+	        		<Route path="create" name="round.create" component={RoundCreate}/>
+	        	</Route>
 	        	<Route path="*" component={ NotFound } />
 			</Route>
 		</Router>,
