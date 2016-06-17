@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 import {Meteor} from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
 import {insertRounds} from '../../../imports/api/rounds/methods.js';
+// import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 export const RoundIndex =React.createClass({
 	componentDidMount() {
@@ -96,7 +97,9 @@ const createRound =(th)=>{
 		if(error){
 			Bert.alert(error.reason || error,'danger');
 		}else{
-			Bert.alert('Deleted Successfully','success');
+			browserHistory.pushState(null,'/round/index');
+			Bert.alert('Created Successfully','success');
+
 		}
 	})
 }
