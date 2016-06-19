@@ -14,8 +14,11 @@ const removeRound=(id)=>{
 		}
 	})
 }
-export const RoundList = ({rounds}) => (
-	rounds.length > 0 ?
+export const RoundList=React.createClass({
+	render(){
+		let sn=0;
+		return (
+			this.props.rounds.length > 0 ?
 		<table className="table">
 			<thead>
 				<tr>
@@ -28,10 +31,10 @@ export const RoundList = ({rounds}) => (
 				</tr>
 			</thead>
 			<tbody>
-			{rounds.map((round)=>(
+			{this.props.rounds.map((round)=>(
 				
-				<tr>
-					<td></td>
+				<tr key={round._id}>
+					<td>{++sn}</td>
 					<td key={round._id}>
 						{round.name} 
 					</td>
@@ -52,4 +55,6 @@ export const RoundList = ({rounds}) => (
 			</tbody>
 		</table> : 
 		<div className="warning">No Rounds</div>
-);
+		);
+	}
+})
