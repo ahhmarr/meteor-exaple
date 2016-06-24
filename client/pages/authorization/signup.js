@@ -3,6 +3,7 @@ import $ from 'jquery';
 import 'jquery-validation';
 import {Accounts} from 'meteor/accounts-base';
 import { browserHistory } from 'react-router';
+import {AddRole} from '../../../imports/api/roles.js';
 
 import { Bert } from 'meteor/themeteorchef:bert';
 
@@ -89,8 +90,20 @@ const signUp=function(component)
 		if(error){
 			Bert.alert(error.reason,'danger');
 		}else{
-			browserHistory.push('/');
-			Bert.alert("Welcome "+user.username,'success');
+			console.log(Meteor.userId());
+			AddRole.call({
+				userId : Meteor.userId(),
+				role   : 'user'
+			},(error)=>{
+				if(error){
+					Bert.alert(error.reason || error ,'danger');
+					//delete user and return back to sign up
+				}else{
+					browserHistory.push('/');
+					Bert.alert("Welcome "+user.username,'success');		
+				}
+			})
+			
 		}
 	})
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navigation} from './../pages/navigation.js';
+import Navigation from './../container/navigation.js';
 
 var App=React.createClass({
 /*	propTypes : {

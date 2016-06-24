@@ -2,6 +2,7 @@ import { composeWithTracker } from 'react-komposer';
 import { Rounds } from '../../imports/api/rounds/rounds';
 import { RoundList } from '../components/round/round-list';
 import { loading } from '../components/loading';
+import React from 'react';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -13,4 +14,4 @@ const composer = (params,onData)=>{
 	}
 };
 
-export default composeWithTracker(composer)(RoundList);
+export default composeWithTracker(composer,loading)(RoundList);

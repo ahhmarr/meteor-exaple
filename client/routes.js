@@ -3,7 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import {render} from 'react-dom';
 import App from './components/App.js';
 import NotFound from './pages/notfound.js';
-import Index from './pages/index.js';
+import Index from './container/index.js';
 import Login from './pages/authorization/login.js';
 import Signup from './pages/authorization/signup.js';
 import Dashboard from './pages/user/dashboard.js';

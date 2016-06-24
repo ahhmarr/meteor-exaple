@@ -2,53 +2,80 @@ import React from 'react';
 import {Meteor} from 'meteor/meteor';
 
 export const Navigation = React.createClass({
-	menuItems : function()
+	adminRoutes(){
+		return (
+			<span>Admin Routes
+			<li>
+				<a href="/dashboard">Dashboard</a>
+			</li>
+			<li>
+				<a href="/round/index">round</a>
+				<ul>
+					<li>
+						<a href="/round/create">
+							create</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/logout">Logout</a>
+			</li>
+			</span>
+			)
+	},
+	userRoutes(){
+		return (
+			<span>User Routes
+			<li>
+				<a href="/dashboard">Dashboard</a>
+			</li>
+			<li>
+				<a href="/round/index">round</a>
+				<ul>
+					<li>
+						<a href="/round/create">
+							create</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/logout">Logout</a>
+			</li>
+			</span>
+			)
+	},
+	loggedIn : function()
 	{
-		let items;
-		if(Meteor.userId()){
-			items= (
-				<span>
-				<li>
-					<a href="/dashboard">Dashboard</a>
-				</li>
-				<li>
-					<a href="/round/index">round</a>
-					<ul>
-						<li>
-							<a href="/round/create">
-								create</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="/logout">Logout</a>
-				</li>
-				</span>
-			)
-		} else{
-			items =(
-				<span>
-				<li>
-					<a href="/login">Login</a>
-				</li>
-				<li>
-					<a href="/signup">Sign Up</a>
-				</li>
-				
-				</span>	
-			)
+		if(this.props.isAdmin){
+			return this.adminRoutes();
+		}else{
+			return this.userRoutes();
 		}
-		return items;
 		
+	},
+	notLoggedIn : function()
+	{
+		return (
+			<span>
+			<li>
+				<a href="/login">Login</a>
+			</li>
+			<li>
+				<a href="/signup">Sign Up</a>
+			</li>
+			
+			</span>	
+		);
 	},
 	render : function()
 	{
 		return (
 		<nav className="navigation">
 			<ul>
-				{this.menuItems()}
+				{this.props.loggedIn ===true? this.loggedIn() : this.notLoggedIn()}
 			</ul>
 		</nav>
 		);
 	}
 }) 
+export default Navigation;

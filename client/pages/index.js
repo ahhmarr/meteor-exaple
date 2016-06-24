@@ -1,11 +1,20 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
+import {Roles} from 'meteor/alanning:roles';
+const role=()=>{
+	return Meteor.userId();
+}
+const Index = React.createClass({
 
-const Index = () => (
-	<div>
-		{Meteor.userId()}
-		Hello world
-	</div>
-);
+	render(){
+		return (
+			<div>
+				{this.props.user}
+				some normal text
+			</div>		
+		);
+	}
+})
+
 
 export default Index;
