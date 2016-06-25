@@ -28,6 +28,12 @@ export const RoundIndex =React.createClass({
 						</div>
 					</div>
 					<div className="form-group">
+						<label for="duration" className="col-xs-4 control-label">Duration (in Hrs.)</label>
+						<div className="col-xs-6">
+							<input type="text" ref="duration" name="duration" id="maxTurn" className="form-control"/>
+						</div>
+					</div>
+					<div className="form-group">
 						<label for="maxTurn" className="col-xs-4 control-label">max allowed turn</label>
 						<div className="col-xs-6">
 							<input type="text" ref="maxTurn" name="maxTurn" id="maxTurn" className="form-control"/>
@@ -61,6 +67,10 @@ var validate=(component)=>{
 			roundName : {
 				required : true
 			},
+			duration : {
+				required : true,
+				number : true
+			},
 			maxTurn : {
 				required : true,
 				number : true
@@ -73,6 +83,9 @@ var validate=(component)=>{
 		messages : {
 			roundName : {
 				required : "round name is required"
+			},
+			duration : {
+				required : "duration is required"
 			},
 			maxTurn : {
 				required : "max turn is required",
@@ -89,6 +102,7 @@ const createRound =(th)=>{
 	let data = {
 		name : th.refs.roundName.value,
 		maxTurn : Number(th.refs.maxTurn.value),
+		duration : Number(th.refs.duration.value),
 		turnInterval : Number(th.refs.turnInterval.value)
 	};
 	console.log('submitted with');
