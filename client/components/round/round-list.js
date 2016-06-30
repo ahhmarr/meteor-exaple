@@ -37,6 +37,7 @@ export const RoundList=React.createClass({
 					<th>Duration(Hrs.)</th>
 					<th>max turn</th>
 					<th>interval</th>
+					<th>turn awarded at interval</th>
 					<th>created at</th>
 					<th>action</th>
 				</tr>
@@ -54,6 +55,7 @@ export const RoundList=React.createClass({
 						{round.max_turn}
 					</td>
 					<td>{round.interval}</td>
+					<td>{round.interval_turn}</td>
 					<td>
 						{moment(round.created_at).format('D-MM-Y')}
 					</td>

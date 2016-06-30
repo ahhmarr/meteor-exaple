@@ -10,6 +10,8 @@ import Dashboard from './pages/user/dashboard.js';
 import Round from './pages/round/round.js';
 import RoundIndex from './pages/round/index.js';
 import RoundCreate from './pages/round/create.js';
+import RoundCurrent from './container/current-round.js';
+import RoundDashboard from './container/round-dashboard.jsx';
 import TimerIndex from './pages/timer/index.js';
 
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -51,6 +53,8 @@ Meteor.startup(function()
 	        	<Route path="round" onEnter={checkAuth} name="round" component={Round} >
 	        		<Route path="index" name="round.index" component={RoundIndex}/>
 	        		<Route path="create" name="round.create" component={RoundCreate}/>
+	        		<Route path="current" name="round.current" component={RoundCurrent}/>
+	        		<Route path="dashboard" name="round.dashboard" component={RoundDashboard} />
 	        	</Route>
 	        	<Route path="timer" onEnter={checkAuth} name="timer.index" component={TimerIndex}></Route>
 	        	<Route path="*" component={ NotFound } />

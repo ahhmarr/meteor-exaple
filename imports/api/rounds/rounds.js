@@ -21,6 +21,10 @@ Rounds.schema=new SimpleSchema({
 		label : 'duration in hours',
 		optional : true
 	},
+	interval_turn : {
+		type: Number,
+		label : 'how much turn should be awarded at the interval'
+	},
 	created_at : {
 		type : Date
 	},

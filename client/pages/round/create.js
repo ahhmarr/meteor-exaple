@@ -40,9 +40,15 @@ export const RoundIndex =React.createClass({
 						</div>
 					</div>
 					<div className="form-group">
-						<label for="turnInterval" className="col-xs-4 control-label">interval</label>
+						<label for="interval" className="col-xs-4 control-label">interval</label>
 						<div className="col-xs-6">
-							<input type="text" ref="turnInterval" name="turnInterval" id="turnInterval" className="form-control"/>
+							<input type="text" ref="interval" name="interval" id="interval" className="form-control"/>
+						</div>
+					</div>
+					<div className="form-group">
+						<label for="turnInterval" className="col-xs-4 control-label">turn awarded in interval</label>
+						<div className="col-xs-6">
+							<input type="text" ref="turnInterval" name="turnInterval" id="maxTurn" className="form-control"/>
 						</div>
 					</div>
 					<div className="form-group">
@@ -78,6 +84,10 @@ var validate=(component)=>{
 			turnInterval : {
 				required : true,
 				number : true
+			},
+			interval : {
+				required : true,
+				number : true
 			}
 		},
 		messages : {
@@ -92,6 +102,9 @@ var validate=(component)=>{
 			},
 			turnInterval : {
 				required : "interval is required",
+			},
+			interval : {
+				required : "interval is required",
 			}
 		},
 		submitHandler () { createRound(component) }
@@ -103,7 +116,8 @@ const createRound =(th)=>{
 		name : th.refs.roundName.value,
 		maxTurn : Number(th.refs.maxTurn.value),
 		duration : Number(th.refs.duration.value),
-		turnInterval : Number(th.refs.turnInterval.value)
+		turnInterval : Number(th.refs.turnInterval.value),
+		interval : Number(th.refs.interval.value)
 	};
 	console.log('submitted with');
 	console.log(data);

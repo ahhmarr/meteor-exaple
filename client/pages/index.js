@@ -9,7 +9,7 @@ const Index = React.createClass({
 	render(){
 		return (
 			<div>
-				{this.props.user}
+				
 				some normal text
 			</div>		
 		);

@@ -31,7 +31,11 @@ const Timer = React.createClass({
 	render(){
 		return (
 			<div>
+				{this.state.seconds>0 ? 
 				<Time time={this.state.seconds} />
+				 :
+				 <span></span>
+				}
 			</div>
 		);
 	}
