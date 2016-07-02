@@ -20,7 +20,10 @@ const RoundDashboard=React.createClass({
 	render(){
 		return (
 			<div>
-				<div>Turns {this.getTurn()}</div>
+				<div>
+					Turns {this.getTurn()}
+					<DateTime time={this.props.turnInterval.next_schedule} />
+				</div>
 				<div>round dashboard {this.props.round.name}</div>
 				<div>started at <DateTime time={this.props.currentRound.round.created_at} /> </div>
 				<div>closing at <DateTime time={this.props.currentRound.round.end_at} /></div>

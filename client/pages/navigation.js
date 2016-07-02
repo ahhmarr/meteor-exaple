@@ -31,11 +31,13 @@ export const Navigation = React.createClass({
 			</li>
 			{	
 				!this.props.isInRound?
-					<span>
-						<li>
-							<a href="/round/current">current round</a>
-						</li>
-					</span>
+					this.props.currentRound ?
+						<span>
+							<li>
+								<a href="/round/current">current round</a>
+							</li>
+						</span> :
+						<span></span>
 					:
 					<span>
 						<li>

@@ -1,6 +1,7 @@
 import { Rounds } from './rounds';
 import { CurrentRounds } from './currentRound';
 import { RunningRound } from './runningRound';
+import { UserTurnSchedule } from './userTurnSchedule';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import {Meteor} from 'meteor/meteor';
@@ -141,15 +142,33 @@ function addingUserToRunningRound(round)
 }
 function registerUsersInterval(user,round)
 {
-	console.log(round);
+	console.log('===registering interval===');
+
 	let schedule=later.parse.text(`every ${round.interval} minutes`);
+	let minutes=round.interval;
+	let nextTime=getNextSchedule(user,round,minutes);
+		addTurn(user,round,nextTime);
 	let timer=later.setInterval(Meteor.bindEnvironment(function()
 	{
-		addTurn(user,round);
+		let nextTime=getNextSchedule(user,round,minutes);
+		addTurn(user,round,nextTime);
 	}),schedule);
 }
-
-function addTurn(user,round)
+function getNextSchedule(user,round,minutes){
+ let exists=UserTurnSchedule.findOne({
+ 	round_id : round._id,
+ 	user_id  : user.id
+ });
+ let prev='';
+ if(exists){
+	prev=exists.next_schedule;
+ }else{
+	prev=new Date();
+ }
+ let next=new Date(moment(moment(prev).add(minutes,'minutes')).toISOString());
+ return next;
+}
+function addTurn(user,round,nextSchedule)
 {
 	console.log('called callback ');
 	let r=Rounds.findOne({
@@ -166,5 +185,16 @@ function addTurn(user,round)
 		$inc : {
 			'users.$.turn' : r.interval_turn
 		}
+	});
+	UserTurnSchedule.update({
+		round_id : r._id,
+		user_id  : user.id
+		
+	},{
+		$set :{
+			next_schedule : nextSchedule
+		}
+	},{
+		upsert :true
 	});
 }
